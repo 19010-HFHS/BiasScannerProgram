@@ -12,7 +12,8 @@ class analyse:
     # Set up GUI heading
     self.scan_heading = Label(self.anal_frame,
                               text="Bias Scanner",
-                              font=("Arial", "16", "bold"))
+                              font=("Arial", "16", "bold"),
+                              bg="#AEF359")
 
     self.scan_heading.grid(row=0)
 
@@ -25,6 +26,28 @@ class analyse:
                                    justify="left")
 
     self.scan_instructions.grid(row=1)
+
+    # Set up input box
+    self.scan_input = Entry(self.temp_frame, font=("Arial", "14"))
+    self.scan_input.grid(row=2, padx=10, pady=10)
+
+    # Set up error message
+    error = "please enter percentages equal to 100%, may not include negatives, decimals or non-numerical subjects"
+    self.scan_error = Label(self.scan_frame, text=error, fg="#9C0000")
+    self.scan_error.grid(row=3)
+
+    # Set up analyse button
+    self.button_frame = Frame(self.scan_frame)
+    self.button_frame.grid(row=4)
+
+    self.analyse_button = Button(self.button_frame,
+                                 text="Analyse",
+                                 bg="#2A9DF4",
+                                 fg="#FFFFFF",
+                                 width=12)
+
+    self.analyse_button.grid(row=0, column=0, padx=5, pady=5)
+
 
 # **** Main Routine ****
 
