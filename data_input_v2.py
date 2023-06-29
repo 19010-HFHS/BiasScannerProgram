@@ -70,17 +70,21 @@ class analyse:
       if response > max_value:
         has_error = "yes"
 
+    except ValueError:
+      has_error = "yes"
+      
       # Sets has error format function so that entry box and labels can be correctly formatted by formatting function
       if has_error == "yes":
         self.var_has_error.set("yes")
         self.var_feedback.set(error)
         return "invalid"
+      
       else:
         return response
-      
+
   
 # **** Main Routine ****
-
+if __name__ == "__main__":
   root = Tk()
   root.title("Bias Scanner")
   analyse()
