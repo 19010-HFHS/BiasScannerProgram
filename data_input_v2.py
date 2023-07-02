@@ -41,7 +41,6 @@ class analyse:
     self.scan_input.grid(row=2, padx=10, pady=10)
 
     # Set up error message
-    error = "please enter percentages equal to 100%, may not include negatives, decimals or non-numerical subjects"
     self.scan_error = Label(self.scan_frame, text="", fg="#9C0000")
     self.scan_error.grid(row=3)
 
@@ -53,23 +52,27 @@ class analyse:
                                  text="Analyse",
                                  bg="#2A9DF4",
                                  fg="#FFFFFF",
-                                 width=12)
+                                 width=12, command=lambda: self.analysis(100, 0))
 
     self.analyse_button.grid(row=0, column=0, padx=5, pady=5)
 
-  def valid_check(self, max_value):
+  def valid_check(self, max_value, min_value):
     # Defines error message
     has_error = "no"
     error = "please enter percentages equal to {}%, may not include negatives, decimals or non-numerical subjects".format(max_value)
 
     # Checks that the user enters a valid number
-    response = self.temp_entry.get()
+    response = self.scan_input.get()
     try:
       response = int(response)
       # Checks if value is above maximum
       if response > max_value:
         has_error = "yes"
-
+      elif response <= min_value:
+        has_error = "yes"
+      else:
+        pass
+    # Checks for value error
     except ValueError:
       has_error = "yes"
       
@@ -79,10 +82,35 @@ class analyse:
         self.var_feedback.set(error)
         return "invalid"
       
-      else:
+      elif has_error == "no":
         return response
 
-  
+  def analysis(self, max_value, min_value):
+    to_analyse = self.valid_check(max_value, min_value)
+    answer = ""
+
+    # Run analysis
+    if max_value == 100 and min_value == 0:
+      # Replace once analysis code is complete
+      answer = "Analysis Complete!"
+        
+    # Creates user output
+    feedback = answer
+    self.var_feedback.set(feedback)
+    
+    # if valid check returns invalid set feedback to no
+    if to_analyse == "invalid":
+      # Red text, Pink entry box
+      self.scan_error.config(fg="#9C0000")
+      self.scan_input.config(bg="#F8CECC")
+      self.scan_error.config(text="please enter percentages equal to 100%, may not include negatives, decimals or non-numerical subjects")
+
+    else:
+      output = self.var_feedback.get()
+      self.scan_error.config(fg="#004C88")
+      self.scan_input.config(bg="#FFFFFF")
+      self.scan_error.config(text=output)
+      
 # **** Main Routine ****
 if __name__ == "__main__":
   root = Tk()
