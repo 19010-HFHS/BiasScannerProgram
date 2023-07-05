@@ -68,7 +68,7 @@ class analyse:
       # Checks if value is above maximum
       if response > max_value:
         has_error = "yes"
-      elif response <= min_value:
+      elif response < min_value:
         has_error = "yes"
       else:
         pass
@@ -77,13 +77,13 @@ class analyse:
       has_error = "yes"
       
       # Sets has error format function so that entry box and labels can be correctly formatted by formatting function
-      if has_error == "yes":
-        self.var_has_error.set("yes")
-        self.var_feedback.set(error)
-        return "invalid"
+    if has_error == "yes":
+      self.var_has_error.set("yes")
+      self.var_feedback.set(error)
+      return "invalid"
       
-      elif has_error == "no":
-        return response
+    elif has_error == "no":
+      return response
 
   def analysis(self, max_value, min_value):
     to_analyse = self.valid_check(max_value, min_value)
@@ -93,20 +93,16 @@ class analyse:
     if max_value == 100 and min_value == 0:
       # Replace once analysis code is complete
       answer = "Analysis Complete!"
-        
-    # Creates user output
-    feedback = answer
-    self.var_feedback.set(feedback)
     
     # if valid check returns invalid set feedback to no
     if to_analyse == "invalid":
       # Red text, Pink entry box
       self.scan_error.config(fg="#9C0000")
       self.scan_input.config(bg="#F8CECC")
-      self.scan_error.config(text="please enter percentages equal to 100%, may not include negatives, decimals or non-numerical subjects")
+      self.scan_error.config(text=self.var_feedback.get())
 
     else:
-      output = self.var_feedback.get()
+      output = answer
       self.scan_error.config(fg="#004C88")
       self.scan_input.config(bg="#FFFFFF")
       self.scan_error.config(text=output)
