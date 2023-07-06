@@ -13,7 +13,7 @@ class analyse:
     self.scan_heading = Label(self.scan_frame,
                               text="Bias Scanner",
                               font=("Arial", "16", "bold"),
-                              bg="#006400")
+                              bg="#AEF359")
 
     self.scan_heading.grid(row=0)
 

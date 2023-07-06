@@ -41,8 +41,8 @@ class analyse:
     self.scan_input.grid(row=2, padx=10, pady=10)
 
     # Set up error message
-    self.scan_error = Label(self.scan_frame, text="", fg="#9C0000")
-    self.scan_error.grid(row=3)
+    self.scan_output = Label(self.scan_frame, text="", fg="#9C0000")
+    self.scan_output.grid(row=3)
 
     # Set up analyse button
     self.button_frame = Frame(self.scan_frame)
@@ -97,15 +97,15 @@ class analyse:
     # if valid check returns invalid set feedback to no
     if to_analyse == "invalid":
       # Red text, Pink entry box
-      self.scan_error.config(fg="#9C0000")
+      self.scan_output.config(fg="#9C0000")
       self.scan_input.config(bg="#F8CECC")
-      self.scan_error.config(text=self.var_feedback.get())
+      self.scan_output.config(text=self.var_feedback.get())
 
     else:
       output = answer
-      self.scan_error.config(fg="#004C88")
+      self.scan_output.config(fg="#004C88")
       self.scan_input.config(bg="#FFFFFF")
-      self.scan_error.config(text=output)
+      self.scan_output.config(text=output)
       
 # **** Main Routine ****
 if __name__ == "__main__":
