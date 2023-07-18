@@ -1,6 +1,12 @@
 # Set up imports
 from tkinter import *
 
+# Set up lists
+all_input = []
+gender = []
+etnicity = []
+major_percentage = []
+minor_percentage = []
 
 class analyse:
 
@@ -32,17 +38,17 @@ class analyse:
                                    text=instructions,
                                    wrap=250,
                                    width=40,
-                                   justify="left")
+                                   justify="center")
 
     self.scan_instructions.grid(row=1)
 
     # Set up input box
     self.scan_input = Entry(self.scan_frame, font=("Arial", "14"))
-    self.scan_input.grid(row=2, padx=10, pady=10)
+    self.scan_input.grid(row=3, column=0, padx=10, pady=10)
 
     # Set up error message
     self.scan_output = Label(self.scan_frame, text="", fg="#9C0000")
-    self.scan_output.grid(row=3)
+    self.scan_output.grid(row=5)
 
     # Set up analyse button
     self.button_frame = Frame(self.scan_frame)
@@ -63,6 +69,8 @@ class analyse:
 
     # Checks that the user enters a valid number
     response = self.scan_input.get()
+    all_input.append(response)
+    self.scan_input.delete(0, END)
     try:
       response = int(response)
       # Checks if value is above maximum
@@ -92,7 +100,9 @@ class analyse:
     # Run analysis
     if max_value == 100 and min_value == 0:
       # Replace once analysis code is complete
-      answer = "Analysis Complete!"
+      print(all_input)
+
+      
     
     # if valid check returns invalid set feedback to no
     if to_analyse == "invalid":
