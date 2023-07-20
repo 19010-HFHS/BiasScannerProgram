@@ -58,7 +58,7 @@ class analyse:
                                  text="Analyse",
                                  bg="#2A9DF4",
                                  fg="#FFFFFF",
-                                 width=12, command=lambda: self.analysis())
+                                 width=12, command=lambda: self.analysis(100, 0))
 
     self.analyse_button.grid(row=0, column=0, padx=5, pady=5)
 
@@ -69,6 +69,8 @@ class analyse:
 
     # Checks that the user enters a valid number
     response = self.scan_input.get()
+    all_input.append(response)
+    self.scan_input.delete(0, END)
     try:
       response = str(response)
     # Checks for value error
@@ -82,9 +84,8 @@ class analyse:
       return "invalid"
       
     elif has_error == "no":
-      all_input.append(response)
-      self.scan_input.delete(0, END)
-      
+      return response
+
   def analysis(self):
     to_analyse = self.valid_check()
     answer = ""
