@@ -67,8 +67,8 @@ class analyse:
   def valid_check(self):
     # Defines error message
     has_error = "no"
-    error = "please enter please enter the authors gender and ethnicity, as well as the subject of research for their major and minor percentage"
-
+    error = "Invalid Format: please enter please enter the authors gender and ethnicity, as well as the subject of research for their major and minor percentage"
+    
     # Sets has error format function so that entry box and labels can be correctly formatted by formatting function
     if has_error == "yes":
       self.var_has_error.set("yes")
@@ -95,6 +95,9 @@ class analyse:
         minor_percentage = all_input[3]
 
         if gender == major_percentage or ethnicity == major_percentage:
+          answer = "Possible Confirmation Bias detected!!!\n Possible Selection Bias detected!!!\n Possible Observer Bias detected!!!"
+
+        if gender == minor_percentage or ethnicity == minor_percentage:
           answer = "Possible Confirmation Bias detected!!!\n Possible Selection Bias detected!!!\n Possible Observer Bias detected!!!"
 
     # if valid check returns invalid set feedback to no

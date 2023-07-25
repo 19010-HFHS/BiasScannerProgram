@@ -41,7 +41,8 @@ class analyse:
     self.scan_input.grid(row=2, padx=10, pady=10)
 
     # Set up error message
-    self.scan_output = Label(self.scan_frame, text="", fg="#9C0000")
+    self.scan_output = Label(self.scan_frame, text="", wrap=250, fg="#9C0000")
+    
     self.scan_output.grid(row=3)
 
     # Set up analyse button
