@@ -48,7 +48,7 @@ class analyse:
     self.scan_input.grid(row=3, column=0, padx=10, pady=10)
 
     # Set up error message
-    self.scan_output = Label(self.scan_frame, text="", fg="#9C0000")
+    self.scan_output = Label(self.scan_frame, text="", wrap=250, fg="#9C0000")
     self.scan_output.grid(row=5)
 
     # Set up analyse button
@@ -70,6 +70,13 @@ class analyse:
     error = "Invalid Format: please enter please enter the authors gender and ethnicity, as well as the subject of research for their major and minor percentage"
     
     # Sets has error format function so that entry box and labels can be correctly formatted by formatting function
+    try:
+      float(self.scan_input.get())
+      has_error = "yes"
+
+    except ValueError:
+      has_error = "no"
+    
     if has_error == "yes":
       self.var_has_error.set("yes")
       self.var_feedback.set(error)
@@ -93,7 +100,7 @@ class analyse:
         ethnicity = all_input[1]
         major_percentage = all_input[2]
         minor_percentage = all_input[3]
-
+        
         if gender == major_percentage or ethnicity == major_percentage:
           answer = "Possible Confirmation Bias detected!!!\n Possible Selection Bias detected!!!\n Possible Observer Bias detected!!!"
 
