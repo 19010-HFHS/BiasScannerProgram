@@ -101,10 +101,10 @@ class analyse:
         major_percentage = all_input[2]
         minor_percentage = all_input[3]
         
-        if gender == major_percentage or ethnicity == major_percentage:
+        if gender.lower() == major_percentage.lower() or ethnicity.lower() == major_percentage.lower():
           answer = "Possible Confirmation Bias detected!!!\n Possible Selection Bias detected!!!\n Possible Observer Bias detected!!!"
 
-        if gender == minor_percentage or ethnicity == minor_percentage:
+        if gender.lower() == minor_percentage.lower() or ethnicity.lower() == minor_percentage.lower():
           answer = "Possible Confirmation Bias detected!!!\n Possible Selection Bias detected!!!\n Possible Observer Bias detected!!!"
 
     # if valid check returns invalid set feedback to no
@@ -115,7 +115,7 @@ class analyse:
       self.scan_output.config(text=self.var_feedback.get())
 
     else:
-      output = answer
+      output = (all_input, answer)
       self.scan_output.config(fg="#CC7722")
       self.scan_input.config(bg="#FFFFFF")
       self.scan_output.config(text=output)
