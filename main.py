@@ -68,7 +68,7 @@ class analyse:
     # Defines error message
     has_error = "no"
     error = "Invalid Format: please enter please enter the authors gender and ethnicity, as well as the subject of research for their major and minor percentage"
-    
+
     # Sets has error format function so that entry box and labels can be correctly formatted by formatting function
     try:
       float(self.scan_input.get())
@@ -76,7 +76,7 @@ class analyse:
 
     except ValueError:
       has_error = "no"
-    
+
     if has_error == "yes":
       self.var_has_error.set("yes")
       self.var_feedback.set(error)
@@ -96,16 +96,24 @@ class analyse:
       all_input.append(response)
       self.scan_input.delete(0, END)
       if len(all_input) == 4:
+        match = "False"
         gender = all_input[0]
         ethnicity = all_input[1]
         major_percentage = all_input[2]
         minor_percentage = all_input[3]
-        
-        if gender.lower() == major_percentage.lower() or ethnicity.lower() == major_percentage.lower():
-          answer = "Possible Confirmation Bias detected!!!\n Possible Selection Bias detected!!!\n Possible Observer Bias detected!!!"
 
-        if gender.lower() == minor_percentage.lower() or ethnicity.lower() == minor_percentage.lower():
-          answer = "Possible Confirmation Bias detected!!!\n Possible Selection Bias detected!!!\n Possible Observer Bias detected!!!"
+        if gender.lower() == major_percentage.lower() or ethnicity.lower(
+        ) == major_percentage.lower():
+          answer = "Possible Confirmation Bias detected!!!\n Possible Selection Bias detected!!!\n Possible Observer Bias detected!!!\n Before you use this data, you should confirm that it was collected fairly, and take it with a grain of salt."
+          match = "True"
+
+        if gender.lower() == minor_percentage.lower() or ethnicity.lower(
+        ) == minor_percentage.lower():
+          answer = "Possible Confirmation Bias detected!!!\n Possible Selection Bias detected!!!\n Possible Observer Bias detected!!!\n Before you use this data, you should confirm that it was collected fairly, and take it with a grain of salt."
+          match = "True"
+
+        elif match == "False":
+          answer = "No match detected. However, it is very difficult to perfectly pin down bias. It is advised that you take all information and data with a grain of salt."
 
     # if valid check returns invalid set feedback to no
     if to_analyse == "invalid":
